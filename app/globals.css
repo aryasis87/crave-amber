@@ -33,3 +33,6 @@ body {
 .scrollbar-hidden::-webkit-scrollbar {
   display: none;             /* Chrome, Safari */
 }
+
+h1, h2, h3 { font-family: var(--font-display), system-ui, sans-serif; }
+body { font-family: var(--font-inter), system-ui, sans-serif; }

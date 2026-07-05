@@ -96,7 +96,7 @@ export default function LoginPage() {
 
               {/* Actions */}
               <div className="flex justify-between text-xs text-[#FFA94D]">
-                <a href="#" className="hover:text-[#FFB347] transition">
+                <a href="/forgot" className="hover:text-[#FFB347] transition">
                   Forgot password?
                 </a>
               </div>
@@ -113,7 +113,7 @@ export default function LoginPage() {
 
             <p className="text-center text-sm text-[#FFA94D]">
               Don’t have an account?{' '}
-              <a href="#" className="text-[#FFB347] hover:underline font-medium">
+              <a href="/register" className="text-[#FFB347] hover:underline font-medium">
                 Sign up
               </a>
             </p>

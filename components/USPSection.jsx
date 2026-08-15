@@ -1,98 +1,51 @@
-'use client'
+import { Package, ShieldCheck, Gauge, MessageCircle } from 'lucide-react'
 
-import {
-  HeartHandshake,
-  ShieldCheck,
-  PackageCheck,
-  MessageCircleHeart,
-} from 'lucide-react'
-import { motion } from 'framer-motion'
-
-const usps = [
+const jaminan = [
   {
-    title: 'Discreet & Secure',
+    icon: Gauge,
+    title: 'Bertingkat, bukan sekaligus',
+    desc: 'Katalog disusun dari yang paling lembut ke yang paling kuat, supaya Anda bisa berhenti di tingkat yang terasa pas.',
+  },
+  {
+    icon: Package,
+    title: 'Kemasan polos',
+    desc: 'Kotak cokelat tanpa cetakan. Nama merek tidak muncul di resi maupun mutasi rekening.',
+  },
+  {
     icon: ShieldCheck,
-    description:
-      'Arrives like a secret. Plain packaging, encrypted billing, your privacy respected.',
+    title: 'Material medical-grade',
+    desc: 'Silikon tidak berpori dan bebas BPA — tidak menyerap, bisa dibersihkan menyeluruh.',
   },
   {
-    title: 'Couples-First Philosophy',
-    icon: HeartHandshake,
-    description:
-      'Crafted to deepen connection — emotional, physical, and everything in between.',
-  },
-  {
-    title: 'Trusted Quality',
-    icon: PackageCheck,
-    description:
-      'Elegant design meets safety. Every detail engineered for confidence.',
-  },
-  {
-    title: 'Real Human Support',
-    icon: MessageCircleHeart,
-    description:
-      'Talk to real intimacy experts. No bots. No awkward scripts. Just warmth.',
+    icon: MessageCircle,
+    title: 'Saran tanpa dorongan',
+    desc: 'Kalau menurut kami Anda belum perlu membeli, itu yang akan kami sampaikan.',
   },
 ]
 
 export default function USPSection() {
   return (
-    <section className="relative py-28 px-6 md:px-12 overflow-hidden bg-night text-cream">
-      {/* Background effects */}
-      <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-[#7c2d121a] via-black to-black" />
-      <div className="absolute inset-0 -z-10 candle opacity-70" />
-
-      <div className="absolute top-[-10%] left-[5%] w-[400px] h-[400px] bg-[#fb923c1a] blur-[120px] rounded-full" />
-      <div className="absolute bottom-[-20%] right-[10%] w-[500px] h-[500px] bg-[#facc151a] blur-[160px] rounded-full" />
-
-      <div className="max-w-7xl mx-auto">
-        {/* Heading */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="text-center max-w-3xl mx-auto mb-20"
-        >
-          <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight leading-tight">
-            Not Just Features. Feelings.
+    <section id="jaminan" className="relative overflow-hidden bg-night-2 py-20 md:py-28">
+      <div className="relative z-10 mx-auto max-w-6xl px-6">
+        <div className="mb-14 max-w-2xl">
+          <p className="micro mb-5 text-amber">Jaminan</p>
+          <h2 className="text-[2rem] leading-[1.12] md:text-[2.7rem]">
+            Empat hal yang tidak berubah, di tingkat mana pun Anda mulai
           </h2>
-          <p className="mt-4 text-lg text-smoke">
-            Designed to touch more than just the surface.
-          </p>
-        </motion.div>
-
-        {/* USP Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {usps.map((usp, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.2, duration: 0.8 }}
-              viewport={{ once: true }}
-              className="relative group rounded-3xl p-6 bg-night-2/5 backdrop-blur-md border border-cream/25/10 shadow-xl hover:shadow-[0_0_20px_#f97316] transition-all"
-            >
-              {/* Glow on hover */}
-              <div className="absolute -inset-1 rounded-[inherit] bg-[#ea580c1a] blur-2xl opacity-0 group-hover:opacity-100 transition duration-500" />
-
-              {/* Icon */}
-              <div className="mb-5">
-                <div className="w-12 h-12 flex items-center justify-center rounded-full bg-cream/10 backdrop-blur-sm">
-                  <usp.icon className="w-6 h-6 text-[#fb923c] group-hover:animate-pulse" />
-                </div>
-              </div>
-
-              {/* Title & Description */}
-              <h3 className="text-lg font-semibold text-cream mb-2 group-hover:text-[#fb923c] transition">
-                {usp.title}
-              </h3>
-              <p className="text-sm text-smoke leading-relaxed">
-                {usp.description}
-              </p>
-            </motion.div>
-          ))}
         </div>
+
+        <dl className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {jaminan.map((j) => (
+            <div
+              key={j.title}
+              className="warm-edge rounded-[var(--radius-soft)] bg-night p-7"
+            >
+              <j.icon className="mb-6 h-6 w-6 text-amber" strokeWidth={1.75} aria-hidden="true" />
+              <dt className="text-base font-bold text-cream">{j.title}</dt>
+              <dd className="mt-3 text-sm leading-relaxed text-smoke">{j.desc}</dd>
+            </div>
+          ))}
+        </dl>
       </div>
     </section>
   )

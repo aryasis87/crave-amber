@@ -1,114 +1,67 @@
-'use client'
+import Link from 'next/link'
 
-import { useState } from 'react'
-import { Phone, Mail, MessageCircle } from 'lucide-react'
+const saluran = [
+  {
+    label: 'Chat',
+    nilai: 'Setiap hari 10.00–22.00 WIB',
+    ket: 'Dijawab orang. Kalau menurut kami Anda belum perlu membeli, itu yang kami sampaikan.',
+  },
+  {
+    label: 'Surel',
+    nilai: 'halo@positivecrave.id',
+    href: 'mailto:halo@positivecrave.id',
+    ket: 'Untuk pertanyaan panjang atau klaim garansi.',
+  },
+  {
+    label: 'Telepon',
+    nilai: '+62 812 3456 7890',
+    href: 'tel:+628123456789',
+    ket: 'Sen–Jum 09.00–17.00 WIB.',
+  },
+]
 
 export default function ContactSupport() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: '',
-  })
-
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value })
-  }
-
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    console.log('Message Sent:', formData)
-    // TODO: Integrate with API or email service
-  }
-
   return (
-    <section className="py-24 px-6 md:px-12 bg-gradient-to-br from-[#FFF9F4] to-white dark:from-zinc-900 dark:to-zinc-950 text-cream dark:text-cream">
-      <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-16 items-start">
+    <section id="kontak" className="relative overflow-hidden bg-night py-20 md:py-28">
+      <div aria-hidden="true" className="candle absolute inset-x-0 bottom-0 h-80" />
 
-        {/* Left: Contact Info */}
-        <div className="space-y-10">
-          <div className="space-y-4">
-            <h2 className="text-4xl md:text-5xl font-bold text-cream dark:text-cream">
-              Let’s Connect, Comfortably
+      <div className="relative z-10 mx-auto max-w-6xl px-6">
+        <div className="grid gap-14 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-20">
+          <div>
+            <p className="micro mb-5 text-amber">Bantuan</p>
+            <h2 className="text-[2rem] leading-[1.12] md:text-[2.7rem]">
+              Ceritakan saja yang Anda cari
             </h2>
-            <p className="text-lg text-smoke dark:text-smoke">
-              Our discreet and friendly support team is ready to help—whether you're shy, curious, or just need a hand.
+            <p className="mt-5 max-w-md leading-relaxed text-smoke">
+              Sebutkan sedikit soal pengalaman Anda berdua sejauh ini, dan kami sarankan satu titik
+              mulai — bukan daftar belanja.
             </p>
-          </div>
 
-          <div className="space-y-6">
-            {/* Info Item */}
-            {[
-              {
-                icon: <Phone className="w-6 h-6 text-[#FF6B2C]" />,
-                title: 'Phone Support',
-                desc: '+62 812 3456 7890\nMon–Fri, 09:00–17:00 WIB',
-              },
-              {
-                icon: <Mail className="w-6 h-6 text-[#FF6B2C]" />,
-                title: 'Email Us',
-                desc: 'support@positivecrave.co.id\nWe’ll reply within 24 hours.',
-              },
-              {
-                icon: <MessageCircle className="w-6 h-6 text-[#FF6B2C]" />,
-                title: 'Live Chat',
-                desc: 'Click the chat icon at the bottom right for real-time anonymous support.',
-              },
-            ].map((item, idx) => (
-              <div key={idx} className="flex items-start gap-4">
-                <div className="p-3 rounded-full bg-[#FFE3CC] dark:bg-[#FF6B2C]/20">
-                  {item.icon}
-                </div>
-                <div>
-                  <h4 className="font-semibold">{item.title}</h4>
-                  <p className="text-smoke dark:text-smoke whitespace-pre-line">
-                    {item.desc}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Right: Contact Form */}
-        <div className="bg-night-2 dark:bg-night-2/70 backdrop-blur-md rounded-2xl shadow-xl p-10 space-y-6">
-          <form onSubmit={handleSubmit} className="space-y-6">
-            {[
-              { label: 'Your Name', type: 'text', name: 'name', placeholder: 'Enter your name' },
-              { label: 'Email Address', type: 'email', name: 'email', placeholder: 'you@example.com' },
-            ].map((input, idx) => (
-              <div key={idx}>
-                <label className="block mb-2 font-medium">{input.label}</label>
-                <input
-                  type={input.type}
-                  name={input.name}
-                  required
-                  value={formData[input.name]}
-                  onChange={handleChange}
-                  placeholder={input.placeholder}
-                  className="w-full px-4 py-3 rounded-lg border border-cream/12 dark:border-cream/12 bg-night-2 dark:bg-night-2 text-cream dark:text-cream focus:outline-none focus:ring-2 focus:ring-[#FFA94D]"
-                />
-              </div>
-            ))}
-
-            <div>
-              <label className="block mb-2 font-medium">Message</label>
-              <textarea
-                name="message"
-                rows="5"
-                required
-                value={formData.message}
-                onChange={handleChange}
-                placeholder="What's on your mind?"
-                className="w-full px-4 py-3 rounded-lg border border-cream/12 dark:border-cream/12 bg-night-2 dark:bg-night-2 text-cream dark:text-cream focus:outline-none focus:ring-2 focus:ring-[#FFA94D]"
-              />
-            </div>
-            <button
-              type="submit"
-              className="w-full py-3 px-6 rounded-lg bg-[#FF6B2C] hover:bg-[#e65c1f] text-cream font-semibold transition"
+            <Link
+              href="/#panduan"
+              className="micro mt-9 inline-flex items-center justify-center rounded-full bg-amber px-8 py-4 text-night transition-colors duration-300 hover:bg-cream"
             >
-              Send Message
-            </button>
-          </form>
+              Buka Panduan Tingkat
+            </Link>
+          </div>
+
+          <dl className="divide-y divide-cream/12 border-y border-cream/12">
+            {saluran.map((s) => (
+              <div key={s.label} className="py-6">
+                <dt className="micro text-smoke/55">{s.label}</dt>
+                <dd className="mt-2 text-base font-bold text-cream">
+                  {s.href ? (
+                    <a href={s.href} className="break-all transition-colors hover:text-amber">
+                      {s.nilai}
+                    </a>
+                  ) : (
+                    s.nilai
+                  )}
+                </dd>
+                <dd className="mt-1.5 text-sm leading-relaxed text-smoke">{s.ket}</dd>
+              </div>
+            ))}
+          </dl>
         </div>
       </div>
     </section>

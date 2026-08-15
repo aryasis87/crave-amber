@@ -1,202 +1,90 @@
-'use client'
+import Link from 'next/link'
 
-import Image from 'next/image'
-import { useState } from 'react'
-import { Heart, ArrowRight, Info, Power, MessageCircle, Zap } from 'lucide-react'
-import { motion, AnimatePresence } from 'framer-motion'
+const spek = [
+  ['Material', 'Silikon medical-grade, bebas BPA'],
+  ['Ketahanan air', 'Tahan percik — tidak untuk direndam'],
+  ['Daya', 'Isi ulang USB-C, ±2 jam pemakaian'],
+  ['Kebisingan', 'Di bawah 45 dB pada mode terendah'],
+  ['Isi paket', 'Alat, kabel, kantong simpan, panduan'],
+  ['Garansi', '12 bulan untuk kerusakan bukan akibat salah pakai'],
+]
 
-const product = {
-  name: 'Pulse Vibe',
-  price: '$79',
-  images: ['/images/p7.jpg', '/images/p8.jpg', '/images/p2.jpg'],
-  features: [
-    { icon: Info, label: 'App-Controlled' },
-    { icon: Zap, label: 'Waterproof' },
-    { icon: MessageCircle, label: 'Long-Distance' },
-    { icon: Power, label: 'USB Rechargeable' },
-    { icon: Info, label: 'Body-Safe Silicone' },
-  ],
-  description:
-    'Pulse Vibe mengirimkan gelombang sensual ke setiap sentuhan. Rasakan koneksi nyata, kapanpun dan di manapun.',
-  specifications: [
-    { key: 'Material', value: 'Medical Grade Silicone' },
-    { key: 'Battery', value: '1.5h USB Rechargeable' },
-    { key: 'Waterproof', value: 'IPX7 Rated' },
-    { key: 'Noise', value: '< 40dB' },
-  ],
-  reviews: [
-    { name: 'Alicia & Ben', comment: 'Sangat intim & menyenangkan!', rating: 5 },
-    { name: 'Chris & Lee', comment: 'Desainnya keren dan fungsional.', rating: 4 },
-  ],
-}
+const galeri = ['/images/p5.jpg', '/images/p9.jpeg', '/images/p10.jpeg']
 
-const tabs = ['Description', 'Specifications', 'Reviews']
-
-export default function ProductOrbitShowcase() {
-  const [liked, setLiked] = useState(false)
-  const [tab, setTab] = useState('Description')
-  const [imgIndex, setImgIndex] = useState(0)
-
+export default function ProductDetailPage() {
   return (
-    <section className="relative bg-gradient-to-br from-[#0B090A] via-black to-[#1A0903] text-cream min-h-screen overflow-hidden">
-      {/* Orbit Background Circles */}
-      <div className="absolute inset-0 pointer-events-none">
-        <motion.div
-          animate={{ rotate: 360 }}
-          transition={{ repeat: Infinity, duration: 60, ease: 'linear' }}
-          className="absolute top-[-25%] left-[-20%] w-[120vw] h-[120vw] bg-[#FF7A45]/15 rounded-full"
-        />
-        <motion.div
-          animate={{ rotate: -360 }}
-          transition={{ repeat: Infinity, duration: 80, ease: 'linear' }}
-          className="absolute top-[30%] left-[60%] w-[100vw] h-[100vw] bg-[#FFB347]/20 rounded-full"
-        />
-      </div>
+    <section className="relative overflow-hidden bg-void pt-28 pb-20 md:pt-36 md:pb-28">
+      <div aria-hidden="true" className="candle absolute inset-x-0 top-0 h-72" />
 
-      <div className="relative z-10 max-w-6xl mx-auto px-6 py-20 grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
-        {/* Left Image */}
-        <div className="flex justify-center md:justify-end">
-          <motion.div
-            animate={{ y: [0, -10, 0] }}
-            transition={{ repeat: Infinity, duration: 4, ease: 'easeInOut' }}
-            className="relative w-72 h-96"
-          >
-            <Image
-              src={product.images[imgIndex]}
-              alt={`Pulse Vibe image ${imgIndex + 1}`}
-              fill
-              className="object-cover rounded-3xl shadow-2xl"
-              priority
-            />
-            <button
-              onClick={() => setLiked(!liked)}
-              aria-label={liked ? 'Unlike product' : 'Like product'}
-              className="absolute top-4 right-4 p-2 bg-night-2/20 rounded-full backdrop-blur-sm hover:bg-[#FF6B2C]/40 transition"
-            >
-              <Heart className={`w-6 h-6 ${liked ? 'text-[#FF7A45]' : 'text-cream'}`} />
-            </button>
-          </motion.div>
-        </div>
+      <div className="relative z-10 mx-auto max-w-6xl px-6">
+        <nav aria-label="Remah roti" className="micro mb-10 flex flex-wrap items-center gap-2 text-ash/55">
+          <Link href="/" className="transition-colors hover:text-neon">
+            Beranda
+          </Link>
+          <span aria-hidden="true">/</span>
+          <span className="text-chalk">Ember Wand</span>
+        </nav>
 
-        {/* Right Panel */}
-        <div className="bg-cream/10 backdrop-blur-lg rounded-2xl p-8 space-y-8 border border-cream/25/10 shadow-xl">
-          <h1 className="text-4xl font-bold">{product.name}</h1>
-          <p className="text-2xl text-[#FFA94D] font-semibold">{product.price}</p>
+        <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-16">
+          <div>
+            <div className="relative aspect-square overflow-hidden border border-chalk/10 bg-void-2">
+              <img src={galeri[0]} alt="Ember Wand" className="h-full w-full object-cover" />
+            </div>
+            <div className="mt-4 grid grid-cols-3 gap-4">
+              {galeri.map((g, i) => (
+                <div key={g} className="relative aspect-square overflow-hidden border border-chalk/10 bg-void-2">
+                  <img src={g} alt={`Ember Wand tampilan ${i + 1}`} className="h-full w-full object-cover" />
+                </div>
+              ))}
+            </div>
+          </div>
 
-          {/* Features */}
-          <div className="grid grid-cols-3 gap-4">
-            {product.features.map((f, i) => (
-              <motion.div
-                key={i}
-                whileHover={{ scale: 1.1 }}
-                className="flex flex-col items-center text-sm text-center"
+          <div>
+            <p className="micro mb-4 text-neon">Tingkat II — sedang</p>
+            <h1 className="text-[2.2rem] leading-[1.06] md:text-[2.9rem]">Ember Wand</h1>
+
+            <p className="mt-5 leading-relaxed text-ash">
+              Enam pola getaran dengan daya menengah — cukup terasa tanpa berlebihan. Ini tingkat
+              kedua, yang biasanya masuk akal setelah Anda berdua tahu apa yang dicari.
+            </p>
+
+            <p className="mt-8 text-2xl font-bold text-chalk">Rp 1.150.000</p>
+
+            <div className="mt-8 flex flex-col gap-4 sm:flex-row">
+              <Link
+                href="/checkout"
+                className="inline-flex flex-1 items-center justify-center bg-neon px-8 py-4 text-sm font-bold text-void transition-colors duration-300 hover:bg-chalk"
               >
-                <f.icon className="w-6 h-6 mb-1 text-[#FFB347]" />
-                <span>{f.label}</span>
-              </motion.div>
-            ))}
-          </div>
-
-          {/* Tabs */}
-          <div className="flex gap-4 flex-wrap">
-            {tabs.map((t) => (
-              <button
-                key={t}
-                onClick={() => setTab(t)}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition ${
-                  tab === t ? 'bg-[#FF6B2C] text-cream' : 'bg-cream/10 hover:bg-[#FF6B2C]/30'
-                }`}
+                Pesan Sekarang
+              </Link>
+              <Link
+                href="/#kontak"
+                className="inline-flex items-center justify-center border border-chalk/25 px-8 py-4 text-sm font-bold text-chalk transition-colors duration-300 hover:border-chalk/60"
               >
-                {t}
-              </button>
-            ))}
-          </div>
+                Tanya Dulu
+              </Link>
+            </div>
 
-          {/* Animated Tab Content */}
-          <div className="relative h-40">
-            <AnimatePresence mode="wait">
-              {tab === 'Description' && (
-                <motion.div
-                  key="desc"
-                  initial={{ rotateY: -90, opacity: 0 }}
-                  animate={{ rotateY: 0, opacity: 1 }}
-                  exit={{ rotateY: 90, opacity: 0 }}
-                  transition={{ duration: 0.5 }}
-                  className="absolute inset-0 text-[#FFE3CC]"
-                >
-                  {product.description}
-                </motion.div>
-              )}
-              {tab === 'Specifications' && (
-                <motion.ul
-                  key="spec"
-                  initial={{ rotateY: -90, opacity: 0 }}
-                  animate={{ rotateY: 0, opacity: 1 }}
-                  exit={{ rotateY: 90, opacity: 0 }}
-                  transition={{ duration: 0.5 }}
-                  className="absolute inset-0 space-y-2 text-[#FFE3CC] text-sm"
-                >
-                  {product.specifications.map((s, i) => (
-                    <li key={i} className="flex justify-between">
-                      <span>{s.key}</span>
-                      <span className="font-semibold">{s.value}</span>
-                    </li>
-                  ))}
-                </motion.ul>
-              )}
-              {tab === 'Reviews' && (
-                <motion.div
-                  key="rev"
-                  initial={{ rotateY: -90, opacity: 0 }}
-                  animate={{ rotateY: 0, opacity: 1 }}
-                  exit={{ rotateY: 90, opacity: 0 }}
-                  transition={{ duration: 0.5 }}
-                  className="absolute inset-0 space-y-4 overflow-y-auto pr-2 text-[#FFE3CC] text-sm"
-                >
-                  {product.reviews.map((r, i) => (
-                    <div
-                      key={i}
-                      className="bg-cream/10 p-4 rounded-xl backdrop-blur-sm border border-cream/25/10"
-                    >
-                      <p className="font-bold">{r.name}</p>
-                      <p>{r.comment}</p>
-                    </div>
-                  ))}
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
+            <div className="mt-8 flex items-center gap-3.5 border border-chalk/10 bg-void-2 px-5 py-4">
+              <span aria-hidden="true" className="h-8 w-8 shrink-0 bg-kraft" />
+              <p className="text-sm leading-relaxed text-chalk/85">
+                Belum yakin ini tingkat yang tepat? Buka panduan tingkat dulu — tidak apa-apa mulai
+                dari yang lebih lembut.
+              </p>
+            </div>
 
-          {/* Thumbnails */}
-          <div className="flex gap-3 overflow-x-auto no-scrollbar">
-            {product.images.map((img, i) => (
-              <button
-                key={i}
-                onClick={() => setImgIndex(i)}
-                aria-label={`View image ${i + 1}`}
-                className={`w-16 h-10 rounded-lg overflow-hidden border-2 ${
-                  imgIndex === i ? 'border-[#FFB347]' : 'border-cream/25/30'
-                }`}
-              >
-                <Image src={img} alt={`Thumbnail ${i + 1}`} width={64} height={64} className="object-cover" />
-              </button>
-            ))}
-          </div>
+            <dl className="mt-10 divide-y divide-chalk/10 border-t border-chalk/10">
+              {spek.map(([k, v]) => (
+                <div key={k} className="flex flex-col gap-1 py-4 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6">
+                  <dt className="micro text-ash/55">{k}</dt>
+                  <dd className="text-sm text-chalk sm:text-right">{v}</dd>
+                </div>
+              ))}
+            </dl>
 
-          {/* CTA Buttons */}
-          <div className="pt-4 flex flex-col sm:flex-row gap-4">
-            <motion.button
-              whileHover={{ scale: 1.05, x: 5 }}
-              className="flex-1 px-6 py-3 bg-[#FF6B2C] rounded-full font-semibold text-cream shadow-lg"
-            >
-              Add to Cart <ArrowRight className="inline ml-2 w-4 h-4" />
-            </motion.button>
-            <motion.button
-              whileHover={{ scale: 1.05, x: -5 }}
-              className="px-6 py-3 border border-[#FFA94D] rounded-full font-semibold text-[#FFA94D]"
-            >
-              Wishlist
-            </motion.button>
+            <p className="micro mt-8 leading-[1.7] text-ash/45">
+              Spesifikasi dan harga di atas adalah contoh untuk keperluan purwarupa desain.
+            </p>
           </div>
         </div>
       </div>

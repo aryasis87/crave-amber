@@ -1,104 +1,71 @@
-'use client'
+import Link from 'next/link'
 
-import { useRef } from 'react'
-import Image from 'next/image'
-import { useRouter } from 'next/navigation'
-import { motion, useScroll, useTransform } from 'framer-motion'
-import { ArrowRight } from 'lucide-react'
-
-const products = [
+const kategori = [
   {
-    id: 1,
-    name: 'Pulse Vibe',
-    price: '$79',
+    nama: 'Tingkat I — Lembut',
+    desc: 'Minyak pijat dan pelumas. Dipakai berdua tanpa alat.',
+    jumlah: '16 barang',
     image: '/images/p2.jpg',
-    desc: 'Explore new waves of pleasure with dual motor design.',
   },
   {
-    id: 2,
-    name: 'Silken Lube',
-    price: '$29',
+    nama: 'Tingkat II — Sedang',
+    desc: 'Getaran rendah dengan beberapa pola. Ukurannya masih ringkas.',
+    jumlah: '22 barang',
     image: '/images/p3.jpg',
-    desc: 'Sensation-enhancing formula for natural glide.',
   },
   {
-    id: 3,
-    name: 'Intimacy Kit',
-    price: '$119',
-    image: '/images/p6.jpg',
-    desc: 'Curated kit to spark romantic discovery.',
+    nama: 'Tingkat III — Kuat',
+    desc: 'Daya lebih besar dan pilihan pola lebih banyak.',
+    jumlah: '13 barang',
+    image: '/images/p5.jpg',
   },
 ]
 
-export default function ImmersiveGallery() {
-  const scrollRef = useRef(null)
-  const router = useRouter()
-
-  const { scrollXProgress } = useScroll({ container: scrollRef })
-  const scale = useTransform(scrollXProgress, [0, 1], [1, 1.05])
-  const titleY = useTransform(scrollXProgress, [0, 1], [0, -40])
-
+export default function CategoryGrid() {
   return (
-    <section className="w-full py-20 px-4 md:px-8 bg-[#0B090A] text-cream">
-      <div className="max-w-7xl mx-auto">
-        {/* 🌀 Title with subtle parallax */}
-        <motion.h2
-          style={{ y: titleY }}
-          className="text-4xl font-bold text-center mb-16 bg-clip-text text-transparent bg-gradient-to-br from-white via-[#FFA94D] to-[#FF6B2C]"
-        >
-          Discover Pleasure as Art
-        </motion.h2>
+    <section id="kategori" className="relative overflow-hidden bg-night py-20 md:py-28">
+      <div aria-hidden="true" className="candle absolute inset-x-0 top-0 h-72 opacity-60" />
 
-        {/* 🖼️ Scrollable Product Gallery */}
-        <div
-          ref={scrollRef}
-          className="scrollbar-hidden flex gap-12 snap-x snap-mandatory overflow-x-auto pb-6 scroll-smooth touch-pan-x"
-        >
-          {products.map((product) => (
-            <motion.div
-              key={product.id}
-              className="relative min-w-[90%] sm:min-w-[85%] md:min-w-[480px] snap-center rounded-3xl overflow-hidden shadow-2xl bg-night-2 group transition"
-              whileHover={{ scale: 1.01 }}
-            >
-              {/* Product Image */}
-              <motion.div
-                className="relative w-full h-96 md:h-[28rem] overflow-hidden"
-                style={{ scale }}
-              >
-                <Image
-                  src={product.image}
-                  alt={`Image of ${product.name}`}
-                  fill
-                  className="object-cover object-center group-hover:scale-105 transition duration-700 ease-out"
-                  priority={product.id === 1}
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10" />
-              </motion.div>
-
-              {/* Overlay Info */}
-              <div className="absolute bottom-0 z-20 p-6 bg-[#1a1a1a]/80 backdrop-blur-xl w-full rounded-t-2xl text-cream">
-                <h3 className="text-xl font-semibold">{product.name}</h3>
-                <p className="text-sm text-smoke mt-1 mb-3">{product.desc}</p>
-                <div className="flex justify-between items-center">
-                  <span className="font-semibold text-[#FF6B2C]">{product.price}</span>
-                  <button
-                    onClick={() => router.push(`/products/${product.id}`)}
-                    className="flex items-center text-sm font-medium text-[#FFA94D] hover:text-cream hover:underline transition"
-                  >
-                    Learn More
-                    <ArrowRight className="ml-1 w-4 h-4" />
-                  </button>
-                </div>
-              </div>
-            </motion.div>
-          ))}
+      <div className="relative z-10 mx-auto max-w-6xl px-6">
+        <div className="mb-12 flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
+          <div className="max-w-xl">
+            <p className="micro mb-5 text-amber">Kategori</p>
+            <h2 className="text-[2rem] leading-[1.12] md:text-[2.7rem]">
+              Pilih tingkatnya dulu, barangnya belakangan
+            </h2>
+          </div>
+          <Link
+            href="/produk"
+            className="micro shrink-0 rounded-full border border-cream/20 px-5 py-3 text-cream transition-colors hover:border-amber hover:text-amber"
+          >
+            Lihat semua
+          </Link>
         </div>
 
-        {/* Progress Bar */}
-        <motion.div
-          style={{ scaleX: scrollXProgress }}
-          className="origin-left h-1 bg-gradient-to-r from-[#FF6B2C] via-[#FFA94D] to-[#FFB347] mt-6 rounded-full"
-        />
+        <div className="grid gap-6 md:grid-cols-3">
+          {kategori.map((k) => (
+            <Link
+              key={k.nama}
+              href="/produk"
+              className="warm-edge group block overflow-hidden rounded-[var(--radius-soft)] bg-night-2 transition-colors hover:border-amber/40"
+            >
+              <div className="relative aspect-[4/3] overflow-hidden">
+                <img
+                  src={k.image}
+                  alt={k.nama}
+                  className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                />
+              </div>
+              <div className="p-6">
+                <div className="flex items-baseline justify-between gap-3">
+                  <h3 className="text-lg font-bold text-cream">{k.nama}</h3>
+                  <span className="micro text-smoke/55">{k.jumlah}</span>
+                </div>
+                <p className="mt-2.5 text-sm leading-relaxed text-smoke">{k.desc}</p>
+              </div>
+            </Link>
+          ))}
+        </div>
       </div>
     </section>
   )

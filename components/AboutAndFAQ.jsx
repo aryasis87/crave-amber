@@ -1,127 +1,96 @@
 'use client'
 
 import { useState } from 'react'
-import {
-  Lock,
-  HeartHandshake,
-  Scale,
-  ShieldCheck,
-  PackageCheck,
-  MessageCircleQuestion,
-  ThumbsUp,
-} from 'lucide-react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { Plus } from 'lucide-react'
 
-const faqs = [
+const tanya = [
   {
-    icon: <ShieldCheck className="w-6 h-6 text-[#FF6B2C]" />,
-    question: 'Apakah pengiriman bersifat rahasia?',
-    answer:
-      'Ya. Kami selalu mengirim dalam kemasan polos tanpa label produk. Tidak ada yang tahu isi paket Anda kecuali Anda.',
+    q: 'Saya harus mulai dari tingkat berapa?',
+    a: 'Kalau ini yang pertama, mulai dari Tingkat I — minyak pijat atau pelumas, dipakai berdua tanpa alat. Tingkat II baru masuk akal setelah Anda berdua tahu apa yang dicari.',
   },
   {
-    icon: <PackageCheck className="w-6 h-6 text-[#FF6B2C]" />,
-    question: 'Bagaimana cara memilih produk yang cocok untuk pasangan kami?',
-    answer:
-      'Kami menyediakan panduan interaktif, kuis kecocokan, dan kurasi khusus seperti "For Couples", "Beginner Kits", dan lainnya.',
+    q: 'Apa bedanya tingkat II dan III?',
+    a: 'Terutama daya dan jumlah pola. Tingkat III bukan versi "lebih bagus", melainkan lebih spesifik — dan biasanya kurang cocok jadi pembelian pertama.',
   },
   {
-    icon: <ThumbsUp className="w-6 h-6 text-[#FF6B2C]" />,
-    question: 'Apakah produk aman digunakan?',
-    answer:
-      'Produk kami dibuat dari material medical-grade, hypoallergenic, dan bebas BPA. Kami hanya memilih merek terpercaya yang lolos uji kualitas.',
+    q: 'Kemasannya seperti apa?',
+    a: 'Kotak cokelat polos tanpa cetakan, dengan keterangan isi "perlengkapan pribadi". Nama Positive Crave tidak muncul di resi maupun mutasi rekening.',
   },
   {
-    icon: <MessageCircleQuestion className="w-6 h-6 text-[#FF6B2C]" />,
-    question: 'Apakah tersedia opsi pembayaran aman?',
-    answer:
-      'Semua transaksi diamankan dengan SSL 256-bit. Kami mendukung kartu kredit, e-wallet, dan transfer bank dengan privasi penuh.',
+    q: 'Materialnya aman untuk kulit sensitif?',
+    a: 'Alat kami memakai silikon medical-grade bebas BPA yang tidak berpori. Untuk pelumas, pilih yang berbahan air — paling jarang memicu iritasi dan mudah dibilas.',
+  },
+  {
+    q: 'Boleh dipakai bersama pelumas apa saja?',
+    a: 'Untuk alat berbahan silikon, gunakan pelumas berbahan air. Pelumas berbahan silikon dapat merusak permukaannya.',
+  },
+  {
+    q: 'Kalau ternyata tidak cocok?',
+    a: 'Untuk alasan higienis, barang yang sudah dibuka tidak dapat ditukar. Karena itu kami lebih suka menyarankan tingkat yang lebih rendah lebih dulu.',
   },
 ]
 
 export default function AboutAndFAQ() {
-  const [openIndex, setOpenIndex] = useState(null)
-
-  const toggle = (index) => {
-    setOpenIndex(openIndex === index ? null : index)
-  }
+  const [open, setOpen] = useState(0)
 
   return (
-    <section className="max-w-6xl mx-auto px-6 md:px-12 py-24 space-y-28 text-cream dark:text-cream">
-
-      {/* ✨ About Section */}
-      <div className="grid md:grid-cols-2 items-center gap-14">
-        <div className="space-y-6">
-          <h2 className="text-4xl md:text-5xl font-bold leading-tight text-cream dark:text-cream">
-            Redefining Intimacy with Elegance & Trust
+    <section id="tanya" className="relative overflow-hidden bg-night-2 py-20 md:py-28">
+      <div className="relative z-10 mx-auto grid max-w-6xl gap-14 px-6 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-20">
+        <div className="lg:sticky lg:top-28 lg:self-start">
+          <p className="micro mb-5 text-amber">Tanya Jawab</p>
+          <h2 className="text-[2rem] leading-[1.12] md:text-[2.7rem]">
+            Enam hal yang paling sering ditanyakan
           </h2>
-          <p className="text-lg leading-relaxed text-smoke dark:text-smoke">
-            Positive Crave hadir untuk memperkuat hubungan melalui eksplorasi intim yang aman, elegan, dan bebas rasa malu. Setiap kurasi kami adalah simbol kepercayaan, kedekatan, dan kenyamanan.
+          <p className="mt-5 leading-relaxed text-smoke">
+            Sebagian besar tentang cara memulai, bukan tentang spesifikasi.
           </p>
         </div>
 
-        {/* 🔐 Icons Section */}
-        <div className="grid sm:grid-cols-3 gap-6 text-center">
-          {[Lock, HeartHandshake, Scale].map((Icon, i) => {
-            const titles = ['Discreet', 'Curated', 'Inclusive']
-            const subtitles = [
-              'Privasi Anda adalah prioritas. Selalu tanpa jejak.',
-              'Kami pilih dengan cinta, untuk cinta.',
-              'Untuk semua bentuk cinta dan ekspresi kasih sayang.',
-            ]
+        <dl className="border-t border-cream/12">
+          {tanya.map((t, i) => {
+            const terbuka = open === i
             return (
-              <div key={i} className="space-y-3 group transition">
-                <div className="w-12 h-12 mx-auto flex items-center justify-center rounded-full bg-[#FFF3E6] dark:bg-[#FF8C3F]/20 group-hover:scale-110 transition-transform">
-                  <Icon className="w-6 h-6 text-[#FF6B2C]" />
-                </div>
-                <h4 className="text-lg font-semibold">{titles[i]}</h4>
-                <p className="text-sm text-smoke dark:text-smoke">{subtitles[i]}</p>
+              <div key={t.q} className="border-b border-cream/12">
+                <dt>
+                  <button
+                    onClick={() => setOpen(terbuka ? null : i)}
+                    aria-expanded={terbuka}
+                    aria-controls={`a-jwb-${i}`}
+                    className="flex w-full items-start gap-5 py-6 text-left"
+                  >
+                    <span aria-hidden="true" className="micro mt-1.5 shrink-0 text-amber">
+                      {String(i + 1).padStart(2, '0')}
+                    </span>
+                    <span className="flex-1 text-base font-bold text-cream md:text-lg">{t.q}</span>
+                    <Plus
+                      size={18}
+                      strokeWidth={2}
+                      aria-hidden="true"
+                      className={`mt-1 shrink-0 text-cream transition-transform duration-300 ${
+                        terbuka ? 'rotate-45' : ''
+                      }`}
+                    />
+                  </button>
+                </dt>
+                <AnimatePresence initial={false}>
+                  {terbuka && (
+                    <motion.dd
+                      id={`a-jwb-${i}`}
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: 'auto', opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.26, ease: [0.22, 1, 0.36, 1] }}
+                      className="overflow-hidden"
+                    >
+                      <p className="pb-7 pl-11 text-sm leading-relaxed text-smoke">{t.a}</p>
+                    </motion.dd>
+                  )}
+                </AnimatePresence>
               </div>
             )
           })}
-        </div>
-      </div>
-
-      {/* ❓ FAQ Section */}
-      <div>
-        <div className="text-center mb-14">
-          <h3 className="text-3xl md:text-4xl font-bold text-cream dark:text-cream">
-            Frequently Asked Questions
-          </h3>
-          <p className="mt-3 text-smoke dark:text-smoke max-w-2xl mx-auto">
-            Jawaban atas pertanyaan yang paling sering ditanyakan pelanggan kami.
-          </p>
-        </div>
-
-        <div className="grid sm:grid-cols-2 gap-6">
-          {faqs.map((faq, i) => (
-            <div
-              key={i}
-              onClick={() => toggle(i)}
-              className={`cursor-pointer rounded-2xl border transition-all duration-300 overflow-hidden shadow-md hover:shadow-xl p-6 space-y-3 ${
-                openIndex === i
-                  ? 'bg-[#FFF9F4] dark:bg-night-2/60 border-[#FFD5B3] dark:border-[#FFA366]'
-                  : 'bg-night-2 dark:bg-night-2/50 border-cream/12 dark:border-cream/12'
-              }`}
-            >
-              <div className="flex items-center gap-3">
-                <div className="flex items-center justify-center w-10 h-10 rounded-full bg-[#FFF3E6] dark:bg-[#FF8C3F]/30">
-                  {faq.icon}
-                </div>
-                <h3 className="text-lg font-semibold">{faq.question}</h3>
-              </div>
-
-              <div
-                className={`text-sm text-smoke dark:text-smoke leading-relaxed transition-all duration-300 ease-in-out ${
-                  openIndex === i
-                    ? 'max-h-[300px] opacity-100 mt-2'
-                    : 'max-h-0 opacity-0 overflow-hidden'
-                }`}
-              >
-                {faq.answer}
-              </div>
-            </div>
-          ))}
-        </div>
+        </dl>
       </div>
     </section>
   )

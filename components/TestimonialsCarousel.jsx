@@ -1,74 +1,58 @@
-'use client'
-
-const testimonials = [
+const suara = [
   {
-    name: 'Dina & Aji',
-    text: 'We thought we knew closeness. This helped us find something even deeper — unspoken, electric.',
-    image: '/images/p12.jpeg',
+    kutipan:
+      'Kami kira harus langsung beli yang mahal biar berasa. Ternyata disuruh mulai dari tingkat satu dulu, dan itu memang lebih masuk akal.',
+    nama: 'A. & M.',
+    ket: 'Yogyakarta',
   },
   {
-    name: 'Rina & Theo',
-    text: 'It wasn’t just fun. It was freeing. Like we got to rewrite what intimacy meant for us.',
-    image: '/images/p13.jpeg',
+    kutipan:
+      'Halaman panduannya yang bikin saya berani nanya. Bahasanya biasa saja, tidak menggurui, tidak juga norak.',
+    nama: 'P.',
+    ket: 'Tangerang',
   },
   {
-    name: 'Sarah & Eli',
-    text: 'We discovered a side of each other we hadn’t seen in years. Like falling in love all over again.',
-    image: '/images/p14.jpeg',
-  },
-  {
-    name: 'Lana & Rafi',
-    text: 'The soft guidance, the elegance — it didn’t just excite us. It made us feel safe. Held.',
-    image: '/images/p15.jpeg',
+    kutipan:
+      'Paketnya benar-benar polos. Saya sempat lupa sudah pesan apa karena di kotaknya memang tidak ada tulisan apa-apa.',
+    nama: 'H. & L.',
+    ket: 'Semarang',
   },
 ]
 
-export default function TestimonialsSection() {
+export default function TestimonialsCarousel() {
   return (
-    <section className="relative py-36 px-6 md:px-16 bg-night text-cream overflow-hidden">
-      {/* Background glow */}
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute top-[-20%] left-[10%] w-[600px] h-[600px] bg-[#fb923c1a] blur-[160px] rounded-full" />
-        <div className="absolute bottom-[-30%] right-[5%] w-[500px] h-[500px] bg-[#d946ef1a] blur-[160px] rounded-full" />
-      </div>
+    <section id="suara" className="relative overflow-hidden bg-night py-20 md:py-28">
+      <div aria-hidden="true" className="candle absolute inset-x-0 bottom-0 h-72 opacity-50" />
 
-      {/* Heading */}
-      <div className="text-center max-w-2xl mx-auto mb-24">
-        <h2 className="text-4xl md:text-5xl font-bold leading-tight tracking-tight text-cream">
-          What Real Connection Sounds Like
-        </h2>
-        <p className="mt-4 text-smoke text-lg">
-          Honest stories from couples redefining intimacy on their own terms.
+      <div className="relative z-10 mx-auto max-w-6xl px-6">
+        <div className="mb-12 max-w-xl">
+          <p className="micro mb-5 text-amber">Catatan Pembeli</p>
+          <h2 className="text-[2rem] leading-[1.12] md:text-[2.7rem]">
+            Kebanyakan cerita soal mulainya, bukan barangnya
+          </h2>
+        </div>
+
+        <div className="grid gap-6 md:grid-cols-3">
+          {suara.map((s) => (
+            <figure
+              key={s.nama}
+              className="warm-edge flex flex-col rounded-[var(--radius-soft)] bg-night-2 p-7"
+            >
+              <span aria-hidden="true" className="mb-6 block h-1 w-10 rounded-full bg-amber" />
+              <blockquote className="flex-1 text-[0.95rem] leading-relaxed text-cream/90">
+                {s.kutipan}
+              </blockquote>
+              <figcaption className="mt-7 border-t border-cream/12 pt-5">
+                <span className="block text-sm font-bold text-cream">{s.nama}</span>
+                <span className="micro mt-1.5 block text-smoke/55">{s.ket}</span>
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+
+        <p className="micro mt-8 leading-[1.7] text-smoke/45">
+          Nama disingkat atas permintaan. Kutipan di atas adalah ilustrasi untuk purwarupa desain.
         </p>
-      </div>
-
-      {/* Testimonials Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-6xl mx-auto">
-        {testimonials.map((t, idx) => (
-          <div
-            key={idx}
-            className="relative bg-night-2/5 border border-cream/25/10 backdrop-blur-md rounded-3xl p-10 flex flex-col gap-6 shadow-lg transition duration-300 hover:shadow-[0_0_20px_#f97316] group"
-          >
-            {/* Accent gradient overlay */}
-            <div className="absolute inset-0 bg-gradient-to-br from-[#fb923c0d] to-transparent rounded-3xl pointer-events-none" />
-
-            {/* Avatar & Name */}
-            <div className="flex items-center gap-4 relative z-10">
-              <img
-                src={t.image}
-                alt={t.name}
-                className="w-12 h-12 rounded-full object-cover ring-2"
-                style={{ borderColor: '#fb923c' }}
-              />
-              <h4 className="text-cream font-semibold">{t.name}</h4>
-            </div>
-
-            {/* Testimonial Text */}
-            <p className="text-smoke text-base leading-relaxed group-hover:text-cream transition relative z-10">
-              “{t.text}”
-            </p>
-          </div>
-        ))}
       </div>
     </section>
   )

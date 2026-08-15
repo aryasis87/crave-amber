@@ -1,27 +1,25 @@
-import HeroSection from '../components/HeroSection'
-import CategoryGrid from '../components/CategoryGrid'
-import ProductDetailPage from '@/components/ProductDetailPage'
+import HeroSection from '@/components/HeroSection'
+import IntensityScale from '@/components/IntensityScale'
+import CategoryGrid from '@/components/CategoryGrid'
+import FeaturedProducts from '@/components/FeaturedProducts'
 import USPSection from '@/components/USPSection'
 import TestimonialsCarousel from '@/components/TestimonialsCarousel'
-import FeaturedProducts from '@/components/FeaturedProducts'
-import CheckoutPage from '@/components/CheckoutPage'
-import LoginPage from '@/components/LoginPage'
 import AboutAndFAQ from '@/components/AboutAndFAQ'
 import ContactSupport from '@/components/ContactSupport'
 
+/* Landing page hanya memuat bagian milik landing page. ProductDetail,
+   Checkout, dan Login yang dulu ikut dirender di sini kini punya rute sendiri. */
 export default function Home() {
   return (
-    <main >
+    <>
       <HeroSection />
+      <IntensityScale />
       <CategoryGrid />
-      <ProductDetailPage />
+      <FeaturedProducts />
       <USPSection />
       <TestimonialsCarousel />
-      <FeaturedProducts />
-      <CheckoutPage />
-      <LoginPage />
       <AboutAndFAQ />
       <ContactSupport />
-\    </main>
+    </>
   )
 }

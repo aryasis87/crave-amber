@@ -37,10 +37,10 @@ const usps = [
 
 export default function USPSection() {
   return (
-    <section className="relative py-28 px-6 md:px-12 overflow-hidden bg-black text-white">
+    <section className="relative py-28 px-6 md:px-12 overflow-hidden bg-night text-cream">
       {/* Background effects */}
       <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-[#7c2d121a] via-black to-black" />
-      <div className="absolute inset-0 -z-10 bg-[url('/noise-light.png')] opacity-10" />
+      <div className="absolute inset-0 -z-10 candle opacity-70" />
 
       <div className="absolute top-[-10%] left-[5%] w-[400px] h-[400px] bg-[#fb923c1a] blur-[120px] rounded-full" />
       <div className="absolute bottom-[-20%] right-[10%] w-[500px] h-[500px] bg-[#facc151a] blur-[160px] rounded-full" />
@@ -57,7 +57,7 @@ export default function USPSection() {
           <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight leading-tight">
             Not Just Features. Feelings.
           </h2>
-          <p className="mt-4 text-lg text-zinc-400">
+          <p className="mt-4 text-lg text-smoke">
             Designed to touch more than just the surface.
           </p>
         </motion.div>
@@ -71,23 +71,23 @@ export default function USPSection() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.2, duration: 0.8 }}
               viewport={{ once: true }}
-              className="relative group rounded-3xl p-6 bg-white/5 backdrop-blur-md border border-white/10 shadow-xl hover:shadow-[0_0_20px_#f97316] transition-all"
+              className="relative group rounded-3xl p-6 bg-night-2/5 backdrop-blur-md border border-cream/25/10 shadow-xl hover:shadow-[0_0_20px_#f97316] transition-all"
             >
               {/* Glow on hover */}
               <div className="absolute -inset-1 rounded-[inherit] bg-[#ea580c1a] blur-2xl opacity-0 group-hover:opacity-100 transition duration-500" />
 
               {/* Icon */}
               <div className="mb-5">
-                <div className="w-12 h-12 flex items-center justify-center rounded-full bg-white/10 backdrop-blur-sm">
+                <div className="w-12 h-12 flex items-center justify-center rounded-full bg-cream/10 backdrop-blur-sm">
                   <usp.icon className="w-6 h-6 text-[#fb923c] group-hover:animate-pulse" />
                 </div>
               </div>
 
               {/* Title & Description */}
-              <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-[#fb923c] transition">
+              <h3 className="text-lg font-semibold text-cream mb-2 group-hover:text-[#fb923c] transition">
                 {usp.title}
               </h3>
-              <p className="text-sm text-zinc-400 leading-relaxed">
+              <p className="text-sm text-smoke leading-relaxed">
                 {usp.description}
               </p>
             </motion.div>

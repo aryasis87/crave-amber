@@ -21,16 +21,16 @@ export default function ContactSupport() {
   }
 
   return (
-    <section className="py-24 px-6 md:px-12 bg-gradient-to-br from-[#FFF9F4] to-white dark:from-zinc-900 dark:to-zinc-950 text-gray-800 dark:text-gray-100">
+    <section className="py-24 px-6 md:px-12 bg-gradient-to-br from-[#FFF9F4] to-white dark:from-zinc-900 dark:to-zinc-950 text-cream dark:text-cream">
       <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-16 items-start">
 
         {/* Left: Contact Info */}
         <div className="space-y-10">
           <div className="space-y-4">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white">
+            <h2 className="text-4xl md:text-5xl font-bold text-cream dark:text-cream">
               Let’s Connect, Comfortably
             </h2>
-            <p className="text-lg text-gray-600 dark:text-gray-400">
+            <p className="text-lg text-smoke dark:text-smoke">
               Our discreet and friendly support team is ready to help—whether you're shy, curious, or just need a hand.
             </p>
           </div>
@@ -60,7 +60,7 @@ export default function ContactSupport() {
                 </div>
                 <div>
                   <h4 className="font-semibold">{item.title}</h4>
-                  <p className="text-gray-600 dark:text-gray-400 whitespace-pre-line">
+                  <p className="text-smoke dark:text-smoke whitespace-pre-line">
                     {item.desc}
                   </p>
                 </div>
@@ -70,7 +70,7 @@ export default function ContactSupport() {
         </div>
 
         {/* Right: Contact Form */}
-        <div className="bg-white dark:bg-zinc-900/70 backdrop-blur-md rounded-2xl shadow-xl p-10 space-y-6">
+        <div className="bg-night-2 dark:bg-night-2/70 backdrop-blur-md rounded-2xl shadow-xl p-10 space-y-6">
           <form onSubmit={handleSubmit} className="space-y-6">
             {[
               { label: 'Your Name', type: 'text', name: 'name', placeholder: 'Enter your name' },
@@ -85,7 +85,7 @@ export default function ContactSupport() {
                   value={formData[input.name]}
                   onChange={handleChange}
                   placeholder={input.placeholder}
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#FFA94D]"
+                  className="w-full px-4 py-3 rounded-lg border border-cream/12 dark:border-cream/12 bg-night-2 dark:bg-night-2 text-cream dark:text-cream focus:outline-none focus:ring-2 focus:ring-[#FFA94D]"
                 />
               </div>
             ))}
@@ -99,12 +99,12 @@ export default function ContactSupport() {
                 value={formData.message}
                 onChange={handleChange}
                 placeholder="What's on your mind?"
-                className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#FFA94D]"
+                className="w-full px-4 py-3 rounded-lg border border-cream/12 dark:border-cream/12 bg-night-2 dark:bg-night-2 text-cream dark:text-cream focus:outline-none focus:ring-2 focus:ring-[#FFA94D]"
               />
             </div>
             <button
               type="submit"
-              className="w-full py-3 px-6 rounded-lg bg-[#FF6B2C] hover:bg-[#e65c1f] text-white font-semibold transition"
+              className="w-full py-3 px-6 rounded-lg bg-[#FF6B2C] hover:bg-[#e65c1f] text-cream font-semibold transition"
             >
               Send Message
             </button>

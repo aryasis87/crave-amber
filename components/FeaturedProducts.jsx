@@ -36,11 +36,11 @@ const products = [
 
 export default function FeaturedProducts() {
   return (
-    <section className="relative isolate overflow-hidden bg-[#0B090A] text-white py-32 px-6 md:px-12">
+    <section className="relative isolate overflow-hidden bg-[#0B090A] text-cream py-32 px-6 md:px-12">
       {/* Glow Effects */}
       <div className="absolute top-[-150px] left-[-100px] w-[500px] h-[500px] bg-[#FF6B2C]/20 rounded-full blur-[160px] mix-blend-screen z-0" />
       <div className="absolute bottom-[-120px] right-[-120px] w-[400px] h-[400px] bg-[#FFB347]/25 rounded-full blur-[140px] mix-blend-screen z-0" />
-      <div className="absolute inset-0 bg-[url('/images/noise.png')] opacity-[0.03] pointer-events-none z-0" />
+      <div className="absolute inset-0 candle pointer-events-none z-0 opacity-60" />
 
       <div className="z-10 max-w-7xl mx-auto w-full space-y-32">
         {products.map((p, i) => (
@@ -63,7 +63,7 @@ export default function FeaturedProducts() {
               <p className="text-[#FFE3CC] text-lg leading-relaxed max-w-xl mx-auto md:mx-0">
                 {p.description}
               </p>
-              <div className="text-2xl font-semibold text-white/90">{p.price}</div>
+              <div className="text-2xl font-semibold text-cream/90">{p.price}</div>
             </div>
 
             {/* Image */}
@@ -75,8 +75,8 @@ export default function FeaturedProducts() {
                 fill
                 className="object-cover rounded-xl z-20"
               />
-              <button className="absolute top-4 right-4 bg-white/10 hover:bg-[#FF6B2C]/20 p-2 rounded-full backdrop-blur transition z-30">
-                <Heart className="w-4 h-4 text-white" />
+              <button className="absolute top-4 right-4 bg-cream/10 hover:bg-[#FF6B2C]/20 p-2 rounded-full backdrop-blur transition z-30">
+                <Heart className="w-4 h-4 text-cream" />
               </button>
             </div>
           </motion.div>

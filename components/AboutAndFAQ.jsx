@@ -46,15 +46,15 @@ export default function AboutAndFAQ() {
   }
 
   return (
-    <section className="max-w-6xl mx-auto px-6 md:px-12 py-24 space-y-28 text-gray-800 dark:text-gray-100">
+    <section className="max-w-6xl mx-auto px-6 md:px-12 py-24 space-y-28 text-cream dark:text-cream">
 
       {/* ✨ About Section */}
       <div className="grid md:grid-cols-2 items-center gap-14">
         <div className="space-y-6">
-          <h2 className="text-4xl md:text-5xl font-bold leading-tight text-gray-900 dark:text-white">
+          <h2 className="text-4xl md:text-5xl font-bold leading-tight text-cream dark:text-cream">
             Redefining Intimacy with Elegance & Trust
           </h2>
-          <p className="text-lg leading-relaxed text-gray-600 dark:text-gray-300">
+          <p className="text-lg leading-relaxed text-smoke dark:text-smoke">
             Positive Crave hadir untuk memperkuat hubungan melalui eksplorasi intim yang aman, elegan, dan bebas rasa malu. Setiap kurasi kami adalah simbol kepercayaan, kedekatan, dan kenyamanan.
           </p>
         </div>
@@ -74,7 +74,7 @@ export default function AboutAndFAQ() {
                   <Icon className="w-6 h-6 text-[#FF6B2C]" />
                 </div>
                 <h4 className="text-lg font-semibold">{titles[i]}</h4>
-                <p className="text-sm text-gray-500 dark:text-gray-400">{subtitles[i]}</p>
+                <p className="text-sm text-smoke dark:text-smoke">{subtitles[i]}</p>
               </div>
             )
           })}
@@ -84,10 +84,10 @@ export default function AboutAndFAQ() {
       {/* ❓ FAQ Section */}
       <div>
         <div className="text-center mb-14">
-          <h3 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">
+          <h3 className="text-3xl md:text-4xl font-bold text-cream dark:text-cream">
             Frequently Asked Questions
           </h3>
-          <p className="mt-3 text-gray-500 dark:text-gray-400 max-w-2xl mx-auto">
+          <p className="mt-3 text-smoke dark:text-smoke max-w-2xl mx-auto">
             Jawaban atas pertanyaan yang paling sering ditanyakan pelanggan kami.
           </p>
         </div>
@@ -99,8 +99,8 @@ export default function AboutAndFAQ() {
               onClick={() => toggle(i)}
               className={`cursor-pointer rounded-2xl border transition-all duration-300 overflow-hidden shadow-md hover:shadow-xl p-6 space-y-3 ${
                 openIndex === i
-                  ? 'bg-[#FFF9F4] dark:bg-zinc-800/60 border-[#FFD5B3] dark:border-[#FFA366]'
-                  : 'bg-white dark:bg-zinc-900/50 border-zinc-200 dark:border-zinc-700'
+                  ? 'bg-[#FFF9F4] dark:bg-night-2/60 border-[#FFD5B3] dark:border-[#FFA366]'
+                  : 'bg-night-2 dark:bg-night-2/50 border-cream/12 dark:border-cream/12'
               }`}
             >
               <div className="flex items-center gap-3">
@@ -111,7 +111,7 @@ export default function AboutAndFAQ() {
               </div>
 
               <div
-                className={`text-sm text-gray-600 dark:text-gray-300 leading-relaxed transition-all duration-300 ease-in-out ${
+                className={`text-sm text-smoke dark:text-smoke leading-relaxed transition-all duration-300 ease-in-out ${
                   openIndex === i
                     ? 'max-h-[300px] opacity-100 mt-2'
                     : 'max-h-0 opacity-0 overflow-hidden'

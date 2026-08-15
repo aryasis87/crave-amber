@@ -25,7 +25,7 @@ const testimonials = [
 
 export default function TestimonialsSection() {
   return (
-    <section className="relative py-36 px-6 md:px-16 bg-black text-white overflow-hidden">
+    <section className="relative py-36 px-6 md:px-16 bg-night text-cream overflow-hidden">
       {/* Background glow */}
       <div className="absolute inset-0 -z-10">
         <div className="absolute top-[-20%] left-[10%] w-[600px] h-[600px] bg-[#fb923c1a] blur-[160px] rounded-full" />
@@ -34,10 +34,10 @@ export default function TestimonialsSection() {
 
       {/* Heading */}
       <div className="text-center max-w-2xl mx-auto mb-24">
-        <h2 className="text-4xl md:text-5xl font-bold leading-tight tracking-tight text-white">
+        <h2 className="text-4xl md:text-5xl font-bold leading-tight tracking-tight text-cream">
           What Real Connection Sounds Like
         </h2>
-        <p className="mt-4 text-zinc-400 text-lg">
+        <p className="mt-4 text-smoke text-lg">
           Honest stories from couples redefining intimacy on their own terms.
         </p>
       </div>
@@ -47,7 +47,7 @@ export default function TestimonialsSection() {
         {testimonials.map((t, idx) => (
           <div
             key={idx}
-            className="relative bg-white/5 border border-white/10 backdrop-blur-md rounded-3xl p-10 flex flex-col gap-6 shadow-lg transition duration-300 hover:shadow-[0_0_20px_#f97316] group"
+            className="relative bg-night-2/5 border border-cream/25/10 backdrop-blur-md rounded-3xl p-10 flex flex-col gap-6 shadow-lg transition duration-300 hover:shadow-[0_0_20px_#f97316] group"
           >
             {/* Accent gradient overlay */}
             <div className="absolute inset-0 bg-gradient-to-br from-[#fb923c0d] to-transparent rounded-3xl pointer-events-none" />
@@ -60,11 +60,11 @@ export default function TestimonialsSection() {
                 className="w-12 h-12 rounded-full object-cover ring-2"
                 style={{ borderColor: '#fb923c' }}
               />
-              <h4 className="text-white font-semibold">{t.name}</h4>
+              <h4 className="text-cream font-semibold">{t.name}</h4>
             </div>
 
             {/* Testimonial Text */}
-            <p className="text-zinc-300 text-base leading-relaxed group-hover:text-white transition relative z-10">
+            <p className="text-smoke text-base leading-relaxed group-hover:text-cream transition relative z-10">
               “{t.text}”
             </p>
           </div>

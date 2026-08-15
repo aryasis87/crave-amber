@@ -38,7 +38,7 @@ export default function ProductOrbitShowcase() {
   const [imgIndex, setImgIndex] = useState(0)
 
   return (
-    <section className="relative bg-gradient-to-br from-[#0B090A] via-black to-[#1A0903] text-white min-h-screen overflow-hidden">
+    <section className="relative bg-gradient-to-br from-[#0B090A] via-black to-[#1A0903] text-cream min-h-screen overflow-hidden">
       {/* Orbit Background Circles */}
       <div className="absolute inset-0 pointer-events-none">
         <motion.div
@@ -71,15 +71,15 @@ export default function ProductOrbitShowcase() {
             <button
               onClick={() => setLiked(!liked)}
               aria-label={liked ? 'Unlike product' : 'Like product'}
-              className="absolute top-4 right-4 p-2 bg-white/20 rounded-full backdrop-blur-sm hover:bg-[#FF6B2C]/40 transition"
+              className="absolute top-4 right-4 p-2 bg-night-2/20 rounded-full backdrop-blur-sm hover:bg-[#FF6B2C]/40 transition"
             >
-              <Heart className={`w-6 h-6 ${liked ? 'text-[#FF7A45]' : 'text-white'}`} />
+              <Heart className={`w-6 h-6 ${liked ? 'text-[#FF7A45]' : 'text-cream'}`} />
             </button>
           </motion.div>
         </div>
 
         {/* Right Panel */}
-        <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-8 space-y-8 border border-white/10 shadow-xl">
+        <div className="bg-cream/10 backdrop-blur-lg rounded-2xl p-8 space-y-8 border border-cream/25/10 shadow-xl">
           <h1 className="text-4xl font-bold">{product.name}</h1>
           <p className="text-2xl text-[#FFA94D] font-semibold">{product.price}</p>
 
@@ -104,7 +104,7 @@ export default function ProductOrbitShowcase() {
                 key={t}
                 onClick={() => setTab(t)}
                 className={`px-4 py-2 rounded-full text-sm font-medium transition ${
-                  tab === t ? 'bg-[#FF6B2C] text-white' : 'bg-white/10 hover:bg-[#FF6B2C]/30'
+                  tab === t ? 'bg-[#FF6B2C] text-cream' : 'bg-cream/10 hover:bg-[#FF6B2C]/30'
                 }`}
               >
                 {t}
@@ -156,7 +156,7 @@ export default function ProductOrbitShowcase() {
                   {product.reviews.map((r, i) => (
                     <div
                       key={i}
-                      className="bg-white/10 p-4 rounded-xl backdrop-blur-sm border border-white/10"
+                      className="bg-cream/10 p-4 rounded-xl backdrop-blur-sm border border-cream/25/10"
                     >
                       <p className="font-bold">{r.name}</p>
                       <p>{r.comment}</p>
@@ -175,7 +175,7 @@ export default function ProductOrbitShowcase() {
                 onClick={() => setImgIndex(i)}
                 aria-label={`View image ${i + 1}`}
                 className={`w-16 h-10 rounded-lg overflow-hidden border-2 ${
-                  imgIndex === i ? 'border-[#FFB347]' : 'border-white/30'
+                  imgIndex === i ? 'border-[#FFB347]' : 'border-cream/25/30'
                 }`}
               >
                 <Image src={img} alt={`Thumbnail ${i + 1}`} width={64} height={64} className="object-cover" />
@@ -187,7 +187,7 @@ export default function ProductOrbitShowcase() {
           <div className="pt-4 flex flex-col sm:flex-row gap-4">
             <motion.button
               whileHover={{ scale: 1.05, x: 5 }}
-              className="flex-1 px-6 py-3 bg-[#FF6B2C] rounded-full font-semibold text-white shadow-lg"
+              className="flex-1 px-6 py-3 bg-[#FF6B2C] rounded-full font-semibold text-cream shadow-lg"
             >
               Add to Cart <ArrowRight className="inline ml-2 w-4 h-4" />
             </motion.button>

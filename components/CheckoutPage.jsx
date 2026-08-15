@@ -37,11 +37,11 @@ export default function CheckoutPage() {
   const total = subtotal + shipping
 
   return (
-    <section className="min-h-screen bg-zinc-950 text-white px-6 py-24 md:px-16">
+    <section className="min-h-screen bg-night text-cream px-6 py-24 md:px-16">
       <div className="max-w-7xl mx-auto grid md:grid-cols-3 gap-16">
         {/* 🛒 Product List */}
         <div className="md:col-span-2 space-y-10 overflow-x-auto">
-          <h2 className="text-4xl font-serif font-semibold mb-4 text-white">
+          <h2 className="text-4xl font-serif font-semibold mb-4 text-cream">
             Your Selection
           </h2>
 
@@ -49,7 +49,7 @@ export default function CheckoutPage() {
             {cart.map(item => (
               <div
                 key={item.id}
-                className="flex flex-col md:flex-row items-start gap-6 pb-6 border-b border-white/10"
+                className="flex flex-col md:flex-row items-start gap-6 pb-6 border-b border-cream/25/10"
               >
                 <div className="relative w-full md:w-40 h-60 md:h-40 overflow-hidden rounded-xl">
                   <Image
@@ -62,10 +62,10 @@ export default function CheckoutPage() {
 
                 <div className="flex-1">
                   <div className="flex justify-between items-start">
-                    <h3 className="text-2xl font-light text-white">{item.name}</h3>
+                    <h3 className="text-2xl font-light text-cream">{item.name}</h3>
                     <button
                       onClick={() => removeItem(item.id)}
-                      className="text-zinc-500 hover:text-red-400 transition"
+                      className="text-smoke hover:text-red-400 transition"
                     >
                       <X size={18} />
                     </button>
@@ -75,19 +75,19 @@ export default function CheckoutPage() {
                     <div className="flex items-center gap-3">
                       <button
                         onClick={() => updateQuantity(item.id, 'decrease')}
-                        className="w-8 h-8 flex items-center justify-center border border-zinc-600 rounded hover:border-orange-500 hover:text-orange-300 transition"
+                        className="w-8 h-8 flex items-center justify-center border border-cream/12 rounded hover:border-amber hover:text-amber transition"
                       >
                         <Minus size={16} />
                       </button>
                       <span className="text-lg">{item.quantity}</span>
                       <button
                         onClick={() => updateQuantity(item.id, 'increase')}
-                        className="w-8 h-8 flex items-center justify-center border border-zinc-600 rounded hover:border-orange-500 hover:text-orange-300 transition"
+                        className="w-8 h-8 flex items-center justify-center border border-cream/12 rounded hover:border-amber hover:text-amber transition"
                       >
                         <Plus size={16} />
                       </button>
                     </div>
-                    <span className="text-lg text-orange-400 font-medium">
+                    <span className="text-lg text-amber font-medium">
                       ${item.price * item.quantity}
                     </span>
                   </div>
@@ -98,12 +98,12 @@ export default function CheckoutPage() {
         </div>
 
         {/* 💳 Summary Box */}
-        <div className="sticky top-28 self-start bg-white/5 backdrop-blur-md border border-white/10 p-8 rounded-2xl shadow-xl space-y-6">
-          <h3 className="text-xl font-serif tracking-wide mb-4 text-white">
+        <div className="sticky top-28 self-start bg-night-2/5 backdrop-blur-md border border-cream/25/10 p-8 rounded-2xl shadow-xl space-y-6">
+          <h3 className="text-xl font-serif tracking-wide mb-4 text-cream">
             Order Summary
           </h3>
 
-          <div className="space-y-3 text-sm text-zinc-300">
+          <div className="space-y-3 text-sm text-smoke">
             <div className="flex justify-between">
               <span>Subtotal</span>
               <span>${subtotal.toFixed(2)}</span>
@@ -112,18 +112,18 @@ export default function CheckoutPage() {
               <span>Shipping</span>
               <span>{shipping === 0 ? 'Free' : `$${shipping.toFixed(2)}`}</span>
             </div>
-            <div className="border-t border-zinc-700 pt-4 flex justify-between text-base text-white font-semibold">
+            <div className="border-t border-cream/12 pt-4 flex justify-between text-base text-cream font-semibold">
               <span>Total</span>
               <span>${total.toFixed(2)}</span>
             </div>
           </div>
 
-          <button className="w-full mt-4 py-3 bg-gradient-to-r from-[#FF6B2C] to-[#FFA94D] hover:to-[#FF6B2C] text-white font-semibold rounded-xl transition shadow-xl">
+          <button className="w-full mt-4 py-3 bg-gradient-to-r from-[#FF6B2C] to-[#FFA94D] hover:to-[#FF6B2C] text-cream font-semibold rounded-xl transition shadow-xl">
             Proceed to Checkout
           </button>
 
-          <div className="flex items-center gap-2 text-xs text-zinc-400 mt-4">
-            <Lock size={14} className="text-orange-400" />
+          <div className="flex items-center gap-2 text-xs text-smoke mt-4">
+            <Lock size={14} className="text-amber" />
             Secure & discreet billing
           </div>
         </div>

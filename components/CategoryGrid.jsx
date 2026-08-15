@@ -39,7 +39,7 @@ export default function ImmersiveGallery() {
   const titleY = useTransform(scrollXProgress, [0, 1], [0, -40])
 
   return (
-    <section className="w-full py-20 px-4 md:px-8 bg-[#0B090A] text-white">
+    <section className="w-full py-20 px-4 md:px-8 bg-[#0B090A] text-cream">
       <div className="max-w-7xl mx-auto">
         {/* 🌀 Title with subtle parallax */}
         <motion.h2
@@ -57,7 +57,7 @@ export default function ImmersiveGallery() {
           {products.map((product) => (
             <motion.div
               key={product.id}
-              className="relative min-w-[90%] sm:min-w-[85%] md:min-w-[480px] snap-center rounded-3xl overflow-hidden shadow-2xl bg-zinc-900 group transition"
+              className="relative min-w-[90%] sm:min-w-[85%] md:min-w-[480px] snap-center rounded-3xl overflow-hidden shadow-2xl bg-night-2 group transition"
               whileHover={{ scale: 1.01 }}
             >
               {/* Product Image */}
@@ -76,14 +76,14 @@ export default function ImmersiveGallery() {
               </motion.div>
 
               {/* Overlay Info */}
-              <div className="absolute bottom-0 z-20 p-6 bg-[#1a1a1a]/80 backdrop-blur-xl w-full rounded-t-2xl text-white">
+              <div className="absolute bottom-0 z-20 p-6 bg-[#1a1a1a]/80 backdrop-blur-xl w-full rounded-t-2xl text-cream">
                 <h3 className="text-xl font-semibold">{product.name}</h3>
-                <p className="text-sm text-zinc-300 mt-1 mb-3">{product.desc}</p>
+                <p className="text-sm text-smoke mt-1 mb-3">{product.desc}</p>
                 <div className="flex justify-between items-center">
                   <span className="font-semibold text-[#FF6B2C]">{product.price}</span>
                   <button
                     onClick={() => router.push(`/products/${product.id}`)}
-                    className="flex items-center text-sm font-medium text-[#FFA94D] hover:text-orange-100 hover:underline transition"
+                    className="flex items-center text-sm font-medium text-[#FFA94D] hover:text-cream hover:underline transition"
                   >
                     Learn More
                     <ArrowRight className="ml-1 w-4 h-4" />

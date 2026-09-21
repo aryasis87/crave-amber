@@ -3,7 +3,7 @@ import LoginPage from '@/components/LoginPage'
 export const metadata = {
   title: 'Masuk — Positive Crave',
   description: 'Masuk ke akun Positive Crave Anda.',
-  alternates: { canonical: 'https://crave-amber.pintuweb.com/masuk' },
+  alternates: { canonical: 'https://crave-amber-mu.vercel.app/masuk' },
   robots: { index: false, follow: true },
 }
 

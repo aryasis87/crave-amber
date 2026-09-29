@@ -56,8 +56,8 @@ export default function HeroSection() {
         <figure className="relative">
           <div className="relative aspect-[4/5] w-full overflow-hidden rounded-[var(--radius-soft)] bg-night-2">
             <Image
-              src="/images/w2.jpeg"
-              alt="Momen tenang berdua"
+              src="/images/hero.webp"
+              alt="Siluet dua orang berpelukan di depan langit jingga senja"
               fill
               priority
               sizes="(min-width: 1024px) 45vw, 100vw"

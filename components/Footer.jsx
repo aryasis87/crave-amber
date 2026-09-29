@@ -4,9 +4,10 @@ const kolom = [
   {
     judul: 'Jelajahi',
     tautan: [
-      { label: 'Panduan Intensitas', href: '/#panduan' },
-      { label: 'Koleksi', href: '/#produk' },
-      { label: 'Produk Pilihan', href: '/produk' },
+      { label: 'Panduan Intensitas', href: '/panduan' },
+      { label: 'Koleksi', href: '/koleksi' },
+      { label: 'Tingkat I · Lembut', href: '/koleksi#tingkat-1' },
+      { label: 'Catatan Lilin', href: '/jurnal' },
     ],
   },
   {
@@ -21,6 +22,7 @@ const kolom = [
     judul: 'Akun',
     tautan: [
       { label: 'Masuk', href: '/masuk' },
+      { label: 'Daftar', href: '/register' },
       { label: 'Pemesanan', href: '/checkout' },
     ],
   },
@@ -65,8 +67,8 @@ export default function Footer() {
         </div>
 
         <div className="mt-14 flex flex-col gap-3 border-t border-cream/10 pt-7 sm:flex-row sm:items-center sm:justify-between">
-          <p className="micro text-smoke/45">© {tahun} Positive Crave</p>
-          <p className="micro text-smoke/45">Khusus dewasa 18+</p>
+          <p className="micro text-smoke">© {tahun} Positive Crave</p>
+          <p className="micro text-smoke">Khusus dewasa 18+</p>
         </div>
       </div>
     </footer>

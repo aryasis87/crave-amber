@@ -7,12 +7,14 @@ import { Menu, X } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 
 const NAV = [
-  { label: 'Panduan', href: '/#panduan' },
-  { label: 'Koleksi', href: '/#produk' },
-  { label: 'Jaminan', href: '/#jaminan' },
+  { label: 'Panduan', href: '/panduan' },
+  { label: 'Koleksi', href: '/koleksi' },
+  { label: 'Catatan', href: '/jurnal' },
   { label: 'Tanya Jawab', href: '/#tanya' },
   { label: 'Bantuan', href: '/#kontak' },
 ]
+
+const aktif = (pathname, href) => !href.startsWith('/#') && (pathname === href || pathname.startsWith(href + '/'))
 
 export default function Navbar() {
   const [open, setOpen] = useState(false)
@@ -55,7 +57,12 @@ export default function Navbar() {
 
         <nav className="hidden items-center gap-8 md:flex" aria-label="Navigasi utama">
           {NAV.map((n) => (
-            <Link key={n.href} href={n.href} className="micro text-smoke transition-colors hover:text-cream">
+            <Link
+              key={n.href}
+              href={n.href}
+              aria-current={aktif(pathname, n.href) ? 'page' : undefined}
+              className={`micro transition-colors hover:text-cream ${aktif(pathname, n.href) ? 'text-amber' : 'text-smoke'}`}
+            >
               {n.label}
             </Link>
           ))}
@@ -98,7 +105,7 @@ export default function Navbar() {
               aria-label="Menu navigasi"
             >
               <div className="flex items-center justify-between border-b border-cream/10 px-6 py-4">
-                <span className="micro text-smoke/60">Menu</span>
+                <span className="micro text-smoke">Menu</span>
                 <button onClick={() => setOpen(false)} className="-mr-2 p-2 text-cream" aria-label="Tutup menu">
                   <X size={20} strokeWidth={2} />
                 </button>

@@ -79,7 +79,50 @@ h3 {
 }
 
 /* --------------------------------------------------------------------------
-   5. Aksesibilitas
+   5. Foto bernada lilin — sedikit sepia dan gradasi amber dari bawah, supaya
+      foto yang sama dengan varian lain terasa diterangi cahaya hangat.
+   -------------------------------------------------------------------------- */
+.warm-photo { background-color: var(--color-night); }
+.warm-photo img { filter: sepia(0.28) saturate(0.92) brightness(0.94); }
+.warm-photo::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgb(23 17 11 / 0.55), rgb(180 83 9 / 0.12) 45%, transparent 70%);
+  pointer-events: none;
+}
+
+/* --------------------------------------------------------------------------
+   6. Penggeser nyala — jalurnya pita intensitas, kenopnya bulatan krem
+   -------------------------------------------------------------------------- */
+.nyala-range {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 0.5rem;
+  border-radius: 999px;
+  background: linear-gradient(to right, rgb(246 236 224 / 0.25), rgb(232 163 61 / 0.85), rgb(180 83 9));
+  cursor: pointer;
+}
+.nyala-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 1.6rem;
+  width: 1.6rem;
+  border-radius: 999px;
+  background: var(--color-cream);
+  border: 3px solid var(--color-night);
+  box-shadow: 0 0 0 2px var(--color-amber), 0 0 18px rgb(232 163 61 / 0.6);
+}
+.nyala-range::-moz-range-thumb {
+  height: 1.6rem;
+  width: 1.6rem;
+  border-radius: 999px;
+  background: var(--color-cream);
+  border: 3px solid var(--color-night);
+  box-shadow: 0 0 0 2px var(--color-amber), 0 0 18px rgb(232 163 61 / 0.6);
+}
+
+/* --------------------------------------------------------------------------
+   7. Aksesibilitas
    -------------------------------------------------------------------------- */
 @media (prefers-reduced-motion: reduce) {
   *,

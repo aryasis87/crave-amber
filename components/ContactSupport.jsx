@@ -38,7 +38,7 @@ export default function ContactSupport() {
             </p>
 
             <Link
-              href="/#panduan"
+              href="/panduan"
               className="micro mt-9 inline-flex items-center justify-center rounded-full bg-amber px-8 py-4 text-night transition-colors duration-300 hover:bg-cream"
             >
               Buka Panduan Tingkat
@@ -48,7 +48,7 @@ export default function ContactSupport() {
           <dl className="divide-y divide-cream/12 border-y border-cream/12">
             {saluran.map((s) => (
               <div key={s.label} className="py-6">
-                <dt className="micro text-smoke/55">{s.label}</dt>
+                <dt className="micro text-smoke">{s.label}</dt>
                 <dd className="mt-2 text-base font-bold text-cream">
                   {s.href ? (
                     <a href={s.href} className="break-all transition-colors hover:text-amber">

@@ -30,13 +30,13 @@ export default function HeroSection() {
 
           <div className="mt-9 flex flex-col gap-4 sm:flex-row">
             <Link
-              href="/#panduan"
+              href="/panduan"
               className="inline-flex items-center justify-center rounded-full bg-amber px-8 py-4 text-sm font-bold text-night transition-colors duration-300 hover:bg-cream"
             >
               Mulai dari Panduan
             </Link>
             <Link
-              href="/#produk"
+              href="/koleksi"
               className="warm-edge inline-flex items-center justify-center rounded-full px-8 py-4 text-sm font-bold text-cream transition-colors duration-300 hover:border-cream/35"
             >
               Lihat Koleksi
@@ -46,7 +46,7 @@ export default function HeroSection() {
           <dl className="mt-14 grid gap-7 border-t border-cream/12 pt-8 sm:grid-cols-3">
             {janji.map(([k, v]) => (
               <div key={k}>
-                <dt className="micro text-smoke/55">{k}</dt>
+                <dt className="micro text-smoke">{k}</dt>
                 <dd className="mt-2.5 text-sm font-semibold text-cream">{v}</dd>
               </div>
             ))}

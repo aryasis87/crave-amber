@@ -1,38 +1,12 @@
 import Link from 'next/link'
+import { PRODUK, TINGKAT } from '@/lib/katalog'
 
 /* ============================================================================
    Bagian penanda varian ini: "Skala Intensitas".
-   Menjawab kebingungan yang paling umum bagi pembeli pertama — harus mulai
-   dari mana. Produk dipetakan pada satu garis, dari yang paling lembut ke
-   yang paling kuat, lengkap dengan saran titik mulai.
+   Titik di pita adalah produk sungguhan dari katalog (lib/katalog.js), jadi
+   peta ini selalu sama dengan /koleksi dan halaman produk. Tiap tingkat
+   menaut ke rak tingkat itu di /koleksi.
    ========================================================================== */
-
-const tingkat = [
-  {
-    level: 'I',
-    nama: 'Lembut',
-    posisi: 12,
-    untuk: 'Baru pertama mencoba',
-    contoh: 'Minyak pijat, pelumas berbahan air',
-    catatan: 'Dipakai berdua tanpa alat. Cara paling aman untuk memulai percakapan.',
-  },
-  {
-    level: 'II',
-    nama: 'Sedang',
-    posisi: 45,
-    untuk: 'Sudah pernah, ingin menambah',
-    contoh: 'Vibrator ringan, set pasangan',
-    catatan: 'Getaran rendah dengan beberapa pilihan pola. Ukurannya masih ringkas.',
-  },
-  {
-    level: 'III',
-    nama: 'Kuat',
-    posisi: 82,
-    untuk: 'Tahu persis yang dicari',
-    contoh: 'Perangkat bertenaga, kit lengkap',
-    catatan: 'Daya lebih besar dan pilihan pola lebih banyak. Sebaiknya bukan yang pertama dibeli.',
-  },
-]
 
 export default function IntensityScale() {
   return (
@@ -42,67 +16,64 @@ export default function IntensityScale() {
       <div className="relative z-10 mx-auto max-w-6xl px-6">
         <div className="mb-14 max-w-2xl">
           <p className="micro mb-5 text-amber">Panduan</p>
-          <h2 className="text-[2rem] leading-[1.12] md:text-[2.7rem]">
-            Tidak perlu langsung ke yang paling kuat
-          </h2>
+          <h2 className="text-[2rem] leading-[1.12] md:text-[2.7rem]">Tidak perlu langsung ke yang paling kuat</h2>
           <p className="mt-5 leading-relaxed text-smoke">
-            Sebagian besar orang berhenti di keranjang bukan karena harga, tapi karena tidak tahu
-            harus mulai dari mana. Ini peta sederhananya — pilih satu tingkat, bukan satu produk.
+            Sebagian besar orang berhenti di keranjang bukan karena harga, tapi karena tidak tahu harus
+            mulai dari mana. Ini peta sederhananya — setiap titik adalah satu barang di koleksi kami.
           </p>
         </div>
 
-        {/* Pita skala */}
+        {/* Pita skala dengan titik produk */}
         <div className="mb-12">
           <div className="relative">
             <div aria-hidden="true" className="intensity-track h-2 w-full rounded-full" />
-            {tingkat.map((t) => (
-              <span
-                key={t.level}
-                aria-hidden="true"
-                className="absolute top-1/2 h-5 w-5 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-night bg-cream"
-                style={{ left: `${t.posisi}%` }}
-              />
-            ))}
+            <ul>
+              {PRODUK.map((p) => (
+                <li key={p.slug} className="absolute top-1/2 -translate-x-1/2 -translate-y-1/2" style={{ left: `${(p.intensitas - 0.5) * 10}%` }}>
+                  <Link
+                    href={`/produk/${p.slug}`}
+                    aria-label={`${p.nama}, intensitas ${p.intensitas} dari 10`}
+                    className="block h-5 w-5 rounded-full border-2 border-night bg-cream transition-transform hover:scale-125 hover:bg-amber"
+                  />
+                </li>
+              ))}
+            </ul>
           </div>
           <div className="mt-4 flex justify-between">
-            <span className="micro text-smoke/60">Lembut</span>
+            <span className="micro text-smoke">Lembut</span>
             <span className="micro text-amber">Kuat</span>
           </div>
         </div>
 
         <div className="grid gap-6 md:grid-cols-3">
-          {tingkat.map((t) => (
-            <article
-              key={t.level}
-              className="warm-edge flex flex-col rounded-[var(--radius-soft)] bg-night-2 p-7"
-            >
-              <div className="mb-5 flex items-baseline gap-3">
-                <span className="micro text-amber">Tingkat {t.level}</span>
-              </div>
-
-              <h3 className="text-xl">{t.nama}</h3>
-              <p className="micro mt-3 text-smoke/60">{t.untuk}</p>
-
-              <p className="mt-5 text-sm leading-relaxed text-cream/80">{t.catatan}</p>
-
-              <dl className="mt-6 border-t border-cream/12 pt-5">
-                <dt className="micro text-smoke/55">Contoh</dt>
-                <dd className="mt-2 text-sm text-cream">{t.contoh}</dd>
-              </dl>
-            </article>
-          ))}
+          {TINGKAT.map((t) => {
+            const isi = PRODUK.filter((p) => p.intensitas >= t.rentang[0] && p.intensitas <= t.rentang[1])
+            return (
+              <article key={t.id} className="warm-edge group relative flex flex-col rounded-[var(--radius-soft)] bg-night-2 p-7 transition-colors hover:border-amber/40">
+                <p className="micro flex justify-between text-amber">
+                  Tingkat {t.romawi}
+                  <span className="text-smoke">{isi.length} barang</span>
+                </p>
+                <h3 className="mt-5 text-xl">
+                  <Link href={`/koleksi#tingkat-${t.id}`} className="after:absolute after:inset-0">{t.nama}</Link>
+                </h3>
+                <p className="micro mt-3 text-smoke">{t.untuk}</p>
+                <p className="mt-5 flex-1 text-sm leading-relaxed text-cream/85">{t.catatan}</p>
+                <p className="mt-6 border-t border-cream/12 pt-5 text-sm text-cream">
+                  {isi.map((p) => p.nama).join(' · ')}
+                </p>
+              </article>
+            )
+          })}
         </div>
 
         <div className="warm-edge mt-10 flex flex-col gap-5 rounded-[var(--radius-soft)] bg-night-2 px-7 py-7 sm:flex-row sm:items-center sm:justify-between">
           <p className="max-w-xl text-sm leading-relaxed text-smoke">
-            Masih ragu? Ceritakan sedikit soal apa yang Anda cari — kami sarankan satu titik mulai,
-            tanpa dorongan untuk membeli yang lebih mahal.
+            Masih ragu? Tiga pertanyaan singkat memberi satu titik mulai — kadang sarannya justru belum
+            membeli apa pun.
           </p>
-          <Link
-            href="/#kontak"
-            className="micro shrink-0 rounded-full bg-amber px-6 py-3.5 text-center text-night transition-colors hover:bg-cream"
-          >
-            Minta Saran
+          <Link href="/panduan" className="micro shrink-0 rounded-full bg-amber px-6 py-3.5 text-center text-night transition-colors hover:bg-cream">
+            Coba kuisnya
           </Link>
         </div>
       </div>

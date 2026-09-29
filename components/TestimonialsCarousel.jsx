@@ -44,13 +44,13 @@ export default function TestimonialsCarousel() {
               </blockquote>
               <figcaption className="mt-7 border-t border-cream/12 pt-5">
                 <span className="block text-sm font-bold text-cream">{s.nama}</span>
-                <span className="micro mt-1.5 block text-smoke/55">{s.ket}</span>
+                <span className="micro mt-1.5 block text-smoke">{s.ket}</span>
               </figcaption>
             </figure>
           ))}
         </div>
 
-        <p className="micro mt-8 leading-[1.7] text-smoke/45">
+        <p className="micro mt-8 leading-[1.7] text-smoke">
           Nama disingkat atas permintaan. Kutipan di atas adalah ilustrasi untuk purwarupa desain.
         </p>
       </div>

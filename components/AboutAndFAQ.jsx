@@ -35,7 +35,7 @@ export default function AboutAndFAQ() {
   const [open, setOpen] = useState(0)
 
   return (
-    <section id="tanya" className="relative overflow-hidden bg-night-2 py-20 md:py-28">
+    <section id="tanya" className="relative overflow-clip bg-night-2 py-20 md:py-28">
       <div className="relative z-10 mx-auto grid max-w-6xl gap-14 px-6 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-20">
         <div className="lg:sticky lg:top-28 lg:self-start">
           <p className="micro mb-5 text-amber">Tanya Jawab</p>

@@ -44,4 +44,4 @@ Foto hero berlisensi **CC0 (domain publik)**: bebas dipakai, termasuk untuk kome
 
 ---
 
-Bagian dari koleksi 9 entri kontes desain web di [PortalKontes](https://portal-kontes.vercel.app). Dibuat oleh [PintuWeb](https://pintuweb.com), jasa pembuatan website.
+Bagian dari koleksi 9 entri kontes desain web di [PortalKontes](https://www.pintuweb.com/kontes-desain). Dibuat oleh [PintuWeb](https://www.pintuweb.com), jasa pembuatan website.
